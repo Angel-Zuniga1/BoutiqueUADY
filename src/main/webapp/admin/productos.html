@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Productos | Admin Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body data-rol="sucursal">
+<header class="barra">
+  <a class="marca" href="index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav></nav>
+</header>
+<main class="panel">
+  <h1 id="titulo">Productos</h1>
+  <section class="bloque">
+    <h2 id="titulo-form">Dar de alta un producto nuevo</h2>
+    <form id="form-producto" class="form-admin" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="accion" value="crear">
+      <input type="hidden" name="id" value="">
+      <label>Nombre <input name="nombre" required></label>
+      <label>Descripción <input name="descripcion"></label>
+      <label>Precio (MXN) <input name="precio" type="number" step="0.01" min="0.01" required></label>
+      <label>Categoría <select name="idCategoria" id="sel-categoria" required></select></label>
+      <label>Ruta de imagen <input name="imagen" placeholder="fotos boutique/archivo.jpg"></label>
+      <label>o subir imagen <input type="file" name="archivo" accept=".jpg,.jpeg,.png,.webp"></label>
+      <div id="bloque-inicial">
+        <label class="casilla"><input type="checkbox" name="conTallas" id="con-tallas" value="1" checked> Producto con tallas</label>
+        <div class="acciones" id="tallas-iniciales"><span>Existencias iniciales:</span></div>
+        <label id="unica-inicial" hidden>Existencias iniciales (talla única) <input class="numero" type="number" min="0" name="inicialUnica" value="0"></label>
+      </div>
+      <div class="acciones">
+        <button class="boton" type="submit" id="btn-guardar">Dar de alta</button>
+        <a class="boton secundario" href="productos.html" id="btn-cancelar" hidden>Cancelar</a>
+      </div>
+    </form>
+    <p class="aparte" id="nota-editar" hidden>Nombre, precio, descripción e imagen son del catálogo general: si otra sucursal también vende este producto, verá los mismos datos. Las existencias se cambian en Inventario.</p>
+  </section>
+  <section class="bloque">
+    <h2 id="titulo-lista">Productos</h2>
+    <div class="tabla-scroll">
+    <table class="tabla-admin">
+      <thead><tr><th>#</th><th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Tallas</th><th>Existencias aquí</th><th>Acciones</th></tr></thead>
+      <tbody id="cuerpo"></tbody>
+    </table>
+    </div>
+  </section>
+  <section class="bloque" id="bloque-otros" hidden>
+    <h2>Agregar a tu sucursal un producto que ya existe en el catálogo</h2>
+    <form id="form-otros" class="form-admin" novalidate>
+      <label>Producto <select name="id" id="sel-otros" required></select></label>
+      <label class="casilla"><input type="checkbox" name="conTallas" value="1" checked> Con tallas (XS a 2XL)</label>
+      <div class="acciones"><button class="boton" type="submit">Agregar y capturar existencias</button></div>
+    </form>
+  </section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin_productos.js"></script>
+</body>
+</html>

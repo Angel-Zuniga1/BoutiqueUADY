@@ -705,3 +705,11 @@ main {
 .resumen-carrito label { display: block; margin: 10px 0 4px; }
 .resumen-carrito select { padding: 8px; border-radius: 8px; margin-bottom: 12px; min-width: 220px; }
 #mensaje-pedido { text-align: center; }
+
+/* ---------- Mis pedidos (RF-08) ---------- */
+.estado-pedido { padding: 3px 10px; border-radius: 999px; font-size: .85rem; white-space: nowrap; background: rgba(148,163,184,.25); }
+.estado-pedido.estado-pendiente { background: rgba(245,158,11,.25); }
+.estado-pedido.estado-listo-para-recoger { background: rgba(59,130,246,.25); }
+.estado-pedido.estado-entregado { background: rgba(34,197,94,.25); }
+.estado-pedido.estado-cancelado { background: rgba(239,68,68,.25); }
+.boton.secundario { background: transparent; border: 1px solid currentColor; color: inherit; }

@@ -242,7 +242,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 enlace.className = 'boton';
                 enlace.href = 'api/comprobante?id=' + datos.idPedido;
                 enlace.textContent = 'Descargar comprobante (.txt)';
-                mensajePedido.append(titulo, texto, enlace);
+                const verPedidos = document.createElement('a');
+                verPedidos.className = 'boton secundario';
+                verPedidos.href = 'mis_pedidos.html';
+                verPedidos.textContent = 'Ver mis pedidos';
+                verPedidos.style.marginLeft = '10px';
+                mensajePedido.append(titulo, texto, enlace, verPedidos);
             } catch (err) {
                 alert('No se pudo confirmar el pedido. Inténtalo de nuevo.');
             } finally {

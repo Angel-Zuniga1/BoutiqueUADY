@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sucursales | Admin Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body data-rol="principal">
+<header class="barra">
+  <a class="marca" href="index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav></nav>
+</header>
+<main class="panel">
+  <h1 id="titulo">Sucursales</h1>
+  <section class="bloque">
+    <h2>Agregar sucursal</h2>
+    <form id="form-crear" class="form-admin" novalidate>
+      <label>Nombre de la sucursal <input name="nombre" required placeholder="Ej. Ingeniería"></label>
+      <div class="acciones"><button class="boton" type="submit">Agregar</button></div>
+    </form>
+  </section>
+  <section class="bloque">
+    <h2 id="titulo-lista">Sucursales</h2>
+    <div class="tabla-scroll">
+    <table class="tabla-admin">
+      <thead><tr><th>#</th><th>Sucursal</th><th>Estado</th><th>Administradores</th><th>Productos</th><th>Pedidos</th><th>Ventas</th><th>Acciones</th></tr></thead>
+      <tbody id="cuerpo"></tbody>
+    </table>
+    </div>
+  </section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin_sucursales.js"></script>
+</body>
+</html>

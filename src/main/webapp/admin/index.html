@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de administración | Admin Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body data-rol="cualquiera">
+<header class="barra">
+  <a class="marca" href="index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav></nav>
+</header>
+<main class="panel">
+  <h1 id="titulo">Panel de administración</h1>
+  <div class="tarjetas-resumen" id="tarjetas"></div>
+  <section class="bloque" id="por-sucursal" hidden>
+    <h2>Resumen por sucursal</h2>
+    <div class="tabla-scroll">
+    <table class="tabla-admin">
+      <thead><tr><th>Sucursal</th><th>Estado</th><th>Pedidos</th><th>Pendientes</th><th>Listos</th><th>Entregados</th><th>Cancelados</th><th>Ventas</th><th></th></tr></thead>
+      <tbody id="cuerpo-sucursales"></tbody>
+    </table>
+    </div>
+  </section>
+  <section class="bloque">
+    <h2 id="titulo-rol"></h2>
+    <ul id="lista-rol"></ul>
+  </section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin_index.js"></script>
+</body>
+</html>

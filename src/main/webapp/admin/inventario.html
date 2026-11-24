@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario | Admin Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body data-rol="sucursal">
+<header class="barra">
+  <a class="marca" href="index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav></nav>
+</header>
+<main class="panel">
+  <h1 id="titulo">Inventario</h1>
+  <section class="bloque">
+    <h2>Existencias por producto y talla</h2>
+    <p class="aparte">Cambia las cantidades y pulsa <b>Guardar existencias</b>. Las tallas en 0 aparecen como agotadas en la tienda.</p>
+    <form id="form-inventario" novalidate>
+      <div class="tabla-scroll">
+      <table class="tabla-admin">
+        <thead><tr><th>Producto</th><th>Talla</th><th>Existencias</th></tr></thead>
+        <tbody id="cuerpo"></tbody>
+      </table>
+      </div>
+      <div class="acciones"><button class="boton" type="submit">Guardar existencias</button></div>
+    </form>
+  </section>
+  <section class="bloque">
+    <h2>Agregar una talla a un producto de tu sucursal</h2>
+    <p class="aparte">Para dar de alta un producto nuevo o traer uno del catálogo, usa <a href="productos.html">Productos</a>.</p>
+    <form id="form-talla" class="form-admin" novalidate>
+      <label>Producto <select name="idProducto" id="sel-producto" required></select></label>
+      <label>Talla <select name="talla" id="sel-talla"><option value="">Única (sin talla)</option></select></label>
+      <label>Existencias <input class="numero" type="number" name="cantidad" min="0" value="0"></label>
+      <div class="acciones"><button class="boton" type="submit">Agregar</button></div>
+    </form>
+  </section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin_inventario.js"></script>
+</body>
+</html>

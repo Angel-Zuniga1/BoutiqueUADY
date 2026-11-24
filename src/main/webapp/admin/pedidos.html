@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos y ventas | Admin Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body data-rol="sucursal">
+<header class="barra">
+  <a class="marca" href="index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav></nav>
+</header>
+<main class="panel">
+  <h1 id="titulo">Pedidos y ventas</h1>
+  <div class="tarjetas-resumen" id="tarjetas"></div>
+  <form class="form-admin inline-form" id="form-filtro">
+    <label>Estado <select name="estado" id="sel-estado"><option value="">Todos</option></select></label>
+  </form>
+  <section class="bloque">
+    <h2 id="titulo-lista">Pedidos</h2>
+    <div id="lista"></div>
+  </section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin_pedidos.js"></script>
+</body>
+</html>

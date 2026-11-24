@@ -1,0 +1,14 @@
+# Generado al compilar (NetBeans / Maven): se vuelve a crear con Clean and Build
+target/
+*.class
+
+# Configuración local de cada computadora
+nbproject/private/
+.idea/
+*.iml
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

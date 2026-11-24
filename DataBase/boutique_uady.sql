@@ -188,3 +188,34 @@ INSERT IGNORE INTO inventario (id_producto, id_sucursal, talla, existencias) VAL
   (13, 1, '', 20),
   (14, 1, '', 20),
   (14, 2, '', 12);
+
+-- ------------------------------------------------------------
+-- Administradores (modulo de administracion, RF-09 a RF-11)
+-- Separados de la tabla usuarios (clientes).
+--   rol 'llave'     : cuenta que, desde el login de la tienda, abre el login de administradores.
+--                     No entra al panel.
+--   rol 'principal' : administrador principal; crea las cuentas de sucursal.
+--   rol 'sucursal'  : administrador de una sucursal.
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS administradores (
+  id_admin      INT AUTO_INCREMENT PRIMARY KEY,
+  nombre        VARCHAR(100) NOT NULL,
+  correo        VARCHAR(150) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  rol           ENUM('llave','principal','sucursal') NOT NULL,
+  id_sucursal   INT NULL,
+  activo        TINYINT(1) NOT NULL DEFAULT 1,
+  FOREIGN KEY (id_sucursal) REFERENCES sucursales(id_sucursal)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Por si la tabla ya existia de una version anterior (sin el rol 'llave')
+ALTER TABLE administradores MODIFY rol ENUM('llave','principal','sucursal') NOT NULL;
+
+-- Cuentas de prueba:
+--   Paso 1 (login de la tienda):      admin@uady.com / 12345678   -> abre admin/login_admin.php
+--   Paso 2 (login de administradores): A24216404@alumnos.uady.mx / 3431halo -> panel principal
+INSERT IGNORE INTO administradores (id_admin, nombre, correo, password_hash, rol, id_sucursal) VALUES
+(1, 'Acceso a administradores', 'admin@uady.com', '$2y$10$5iWdKYrxrId9GIFhcTcLFeNwSJwD184H/gz2D5wEr4rLk6uXDDKwi', 'llave', NULL),
+(2, 'Administrador principal', 'A24216404@alumnos.uady.mx', '$2y$10$Zl7T7ClaVkLpm/VNFW8Ny.uVtVsTqOkXrROmL1JEgQVy1PmovtKBK', 'principal', NULL);
+-- Si ya existian, se dejan con la contraseña y el rol de pruebas
+UPDATE administradores SET password_hash = '$2y$10$5iWdKYrxrId9GIFhcTcLFeNwSJwD184H/gz2D5wEr4rLk6uXDDKwi', rol = 'llave', activo = 1 WHERE correo = 'admin@uady.com';
+UPDATE administradores SET password_hash = '$2y$10$Zl7T7ClaVkLpm/VNFW8Ny.uVtVsTqOkXrROmL1JEgQVy1PmovtKBK', rol = 'principal', activo = 1 WHERE correo = 'A24216404@alumnos.uady.mx';
