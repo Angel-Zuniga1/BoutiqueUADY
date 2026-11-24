@@ -4,6 +4,7 @@ public class Sucursal {
 
     private int id;
     private String nombre;
+    private boolean activa = true;
 
     public Sucursal() {
     }
@@ -18,4 +19,7 @@ public class Sucursal {
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public boolean isActiva() { return activa; }
+    public void setActiva(boolean activa) { this.activa = activa; }
 }

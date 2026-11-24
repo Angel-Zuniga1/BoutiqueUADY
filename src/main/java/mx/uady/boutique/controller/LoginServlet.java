@@ -11,6 +11,7 @@ import java.util.Map;
 import mx.uady.boutique.exception.CredencialesInvalidasException;
 import mx.uady.boutique.exception.ValidacionException;
 import mx.uady.boutique.model.Usuario;
+import mx.uady.boutique.service.AdminAutenticacionService;
 import mx.uady.boutique.service.AutenticacionService;
 import mx.uady.boutique.util.JsonUtil;
 
@@ -25,6 +26,7 @@ public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private final AutenticacionService servicio = new AutenticacionService();
+    private final AdminAutenticacionService adminServicio = new AdminAutenticacionService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -43,6 +45,17 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
+            // PASO 1 DE ADMINISTRADORES: la cuenta llave (admin@uady.com en las pruebas) NO crea
+            // sesión de cliente ni cookie de saludo; solo deja una marca y manda al login del panel.
+            if (adminServicio.esLlave(request.getParameter("correo"), request.getParameter("password"))) {
+                HttpSession sesion = request.getSession(true);
+                request.changeSessionId();
+                sesion.setAttribute(AdminSesion.LLAVE, Boolean.TRUE);
+                Map<String, Object> r = JsonUtil.resultado(true, "");
+                r.put("redirigir", "admin/login.html");
+                JsonUtil.enviar(response, HttpServletResponse.SC_OK, r);
+                return;
+            }
             Usuario usuario = servicio.iniciarSesion(
                     request.getParameter("correo"),
                     request.getParameter("password"));

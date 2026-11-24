@@ -21,6 +21,11 @@ public final class Validador {
         return texto == null || texto.isEmpty();
     }
 
+    /** Comprobación sencilla de formato de correo (la misma expresión que validacion.js). */
+    public static boolean esCorreoValido(String correo) {
+        return correo != null && correo.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+    }
+
     /** Elimina espacios al inicio y al final; un valor nulo se vuelve cadena vacía. */
     public static String limpiar(String texto) {
         return texto == null ? "" : texto.trim();

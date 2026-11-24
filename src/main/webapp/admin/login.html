@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso de administradores | Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+<header class="barra">
+  <a class="marca" href="../index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav><a href="../index.html">Volver a la tienda</a></nav>
+</header>
+<main>
+<section class="formulario">
+  <h1>Acceso de administradores</h1>
+  <p class="aparte">Paso 2 de 2. Entra con tu cuenta de administrador principal o de sucursal.</p>
+  <div id="mensaje"></div>
+  <form id="formulario" novalidate>
+    <label>Correo <input type="email" name="correo" required></label>
+    <label>Contraseña <input type="password" name="password" required></label>
+    <button class="boton grande" type="submit">Entrar al panel</button>
+  </form>
+</section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>
+// Paso 2: solo se muestra si login.html de la tienda reconoció la cuenta llave (paso 1)
+document.addEventListener('DOMContentLoaded', async () => {
+    const r = await fetch('../api/admin/sesion', { cache: 'no-store' });
+    const s = await r.json();
+    if (s.autenticado) { location.replace('index.html'); return; }
+    if (!s.llave) {
+        alert('Para entrar al panel, primero inicia sesión en la tienda con la cuenta de acceso de administradores.');
+        location.replace('../login.html');
+        return;
+    }
+    const form = document.getElementById('formulario');
+    const mensaje = document.getElementById('mensaje');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!Admin.validar(form)) { return; }
+        const datos = Object.fromEntries(new FormData(form));
+        const resp = await fetch('../api/admin/sesion', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) });
+        const res = await resp.json();
+        if (res.ok) {
+            location.href = 'index.html?ok=' + encodeURIComponent(res.mensaje);
+        } else {
+            mensaje.innerHTML = '';
+            const div = document.createElement('div'); div.className = 'error'; div.textContent = res.mensaje || res.error;
+            mensaje.appendChild(div);
+            alert(div.textContent);
+            form.reset();
+        }
+    });
+});
+</script>
+</body>
+</html>

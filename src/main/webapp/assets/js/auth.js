@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             const datos = await resp.json();
             if (datos.redirigir) {
+                if (datos.redirigir.indexOf("admin/") === 0) {
+                    alert("Cuenta de acceso reconocida. Ahora inicia sesión con tu cuenta de administrador (principal o de sucursal).");
+                }
                 window.location.href = datos.redirigir;
                 return;
             }

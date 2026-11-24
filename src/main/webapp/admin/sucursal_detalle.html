@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sucursal | Admin Boutique UADY</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body data-rol="principal">
+<header class="barra">
+  <a class="marca" href="index.html">Boutique <b>UADY</b> <span class="etiqueta-admin">ADMIN</span></a>
+  <nav></nav>
+</header>
+<main class="panel">
+  <h1 id="titulo">Sucursal</h1>
+  <p class="aparte"><a href="sucursales.html">&larr; Volver a sucursales</a> · Vista de consulta: los cambios los hace el administrador de la sucursal.</p>
+  <div class="tarjetas-resumen" id="tarjetas"></div>
+  <section class="bloque">
+    <h2>Ventas por estado</h2>
+    <table class="tabla-admin"><thead><tr id="estados-cab"></tr></thead><tbody><tr id="estados-fila"></tr></tbody></table>
+  </section>
+  <section class="bloque">
+    <h2>Productos más vendidos</h2>
+    <div id="mas-vendidos"></div>
+  </section>
+  <section class="bloque">
+    <h2 id="titulo-inv">Inventario</h2>
+    <div class="tabla-scroll">
+    <table class="tabla-admin"><thead><tr><th>Producto</th><th>Precio</th><th>Talla</th><th>Existencias</th></tr></thead><tbody id="inventario"></tbody></table>
+    </div>
+  </section>
+  <section class="bloque">
+    <h2>Últimos pedidos</h2>
+    <div class="tabla-scroll">
+    <table class="tabla-admin"><thead><tr><th>#</th><th>Fecha</th><th>Cliente</th><th>Total</th><th>Estado</th></tr></thead><tbody id="pedidos"></tbody></table>
+    </div>
+  </section>
+</main>
+<footer class="pie">Boutique UADY en línea · Panel de administración</footer>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin_sucursal_detalle.js"></script>
+</body>
+</html>

@@ -77,6 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
         nav.querySelectorAll('a[href="login.html"], a[href="registro.html"]').forEach(a => a.remove());
         let saludo = nav.querySelector(".saludo");
         if (!saludo) {
+            if (!nav.querySelector('a[href="mis_pedidos.html"]')) {
+                const pedidos = document.createElement("a");
+                pedidos.href = "mis_pedidos.html";
+                pedidos.textContent = "Mis pedidos";
+                nav.insertBefore(pedidos, botonTema);
+            }
             saludo = document.createElement("span");
             saludo.className = "saludo";
             nav.insertBefore(saludo, botonTema);
@@ -92,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Sin sesion se muestran los enlaces de invitado
     const mostrarInvitado = () => {
-        nav.querySelectorAll(".saludo, .enlace-salir").forEach(el => el.remove());
+        nav.querySelectorAll(".saludo, .enlace-salir, a[href=\"mis_pedidos.html\"]").forEach(el => el.remove());
         if (!nav.querySelector('a[href="login.html"]')) {
             const login = document.createElement("a");
             login.href = "login.html";
@@ -109,6 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     nav.appendChild(botonTema);
+
+    // En el panel de administración (carpeta admin/) la barra la pinta admin.js:
+    // aquí solo queda el botón de tema y no se toca la sesión de cliente.
+    if (document.body.dataset.rol !== undefined || location.pathname.indexOf("/admin/") !== -1) {
+        return;
+    }
 
     const nombreCookie = leerNombre();
     if (nombreCookie) { mostrarSaludo(nombreCookie); }
