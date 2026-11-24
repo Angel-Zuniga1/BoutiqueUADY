@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- La API queda en http://localhost:8080/BoutiqueUADY/api/... (Apache la reenvía desde el puerto 80) -->
-<Context path="/BoutiqueUADY"/>
